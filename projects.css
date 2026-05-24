@@ -1,0 +1,82 @@
+body {
+   font-family: Arial, Helvetica, sans-serif;
+   background-color: #121212;
+   color: white;
+}
+
+.projects__header {
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 40px;
+   text-align: center;
+}
+
+.projects__line {
+   background-color: white;
+   padding: 2px;
+   width: 60px;
+   margin: 10px auto;
+   border-radius: 2px;
+}
+
+.projects__cards {
+   display: flex;
+   gap: 25px;
+   justify-content: center;
+   flex-wrap: wrap;
+   max-width: 900px;
+   margin: 40px auto;
+   padding: 0 20px;
+}
+
+.projects__card {
+    background-color: #1E1E1E;
+   border: 1px solid #2B2B2B;
+   border-radius: 20px;
+   padding: 30px;
+   flex: 1;
+   min-width: 250px;
+   transition: 0.3s ease;
+}
+
+.projects__view{
+    display: inline-block;
+   background-color: #E8EDDF;
+   color: black;
+   font-size: 18px;
+   font-weight: 550;
+   padding: 15px 35px;
+   border-radius: 999px;
+   border: none;
+   cursor: pointer;
+   transition: 0.3s ease;
+   backface-visibility: hidden;
+   will-change: transform;
+   text-decoration: none;
+}
+
+.projects__view:hover {
+   transform: scale(1.05);
+}
+
+.back__home{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #E8EDDF;
+   color: black;
+   font-size: 18px;
+   font-weight: 550;
+   padding: 15px 35px;
+   border-radius: 999px;
+   border: none;
+   cursor: pointer;
+   transition: 0.3s ease;
+   backface-visibility: hidden;
+   will-change: transform;
+   text-decoration: none;
+   text-align: center;
+}
+
+.back__home:hover {
+   transform: scale(1.05);
+}
