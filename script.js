@@ -1,5 +1,11 @@
 const fullText = "@ Qwertz";
 let indexText = 0;
+const typewriteText = "front-end developer";
+const elementTypeWrite = document.getElementById("typewrite");
+let indexTypeWrite = 0;
+const navbar = document.querySelector(".navbar");
+const aboutSection = document.querySelector("#about");
+const homeSection = document.getElementById("home")
 
 function animateTitle() {
     indexText++;
@@ -13,51 +19,55 @@ function animateTitle() {
 
 setInterval(animateTitle, 700);
 
-const locations = [
-    { country: "USA", city: "New York", zone: "America/New_York" },
-    { country: "USA", city: "Los Angeles", zone: "America/Los_Angeles" },
-    { country: "Germany", city: "Berlin", zone: "Europe/Berlin" },
-    { country: "England", city: "London", zone: "Europe/London" },
-    { country: "Russia", city: "Moscow", zone: "Europe/Moscow" },
-    { country: "Japan", city: "Tokyo", zone: "Asia/Tokyo" },
-    { country: "China", city: "Beijing", zone: "Asia/Shanghai" },
-];
-
-let currentIndex = 0;
-
-function updateClock() {
-    const container = document.getElementById("clock-container");
-
-    if (!container) return;
-
-    container.classList.remove("show");
-
-    setTimeout(() => {
-        const loc = locations[currentIndex];
-
-        const timeString = new Date().toLocaleTimeString("de-DE", {
-            timeZone: loc.zone,
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false
-        });
-
-        container.innerHTML = `
-            <div class="clock-item">
-                <p class="country">${loc.country}</p>
-                <p class="city">${loc.city}</p>
-                <p class="time">${timeString}</p>
-            </div>
-        `;
-
-        container.classList.add("show");
-
-        currentIndex = (currentIndex + 1) % locations.length;
-
-    }, 400);
+function typeWrite() {
+    if (indexTypeWrite < typewriteText.length) {
+        elementTypeWrite.textContent += typewriteText.charAt(indexTypeWrite);
+        indexTypeWrite++;
+        setTimeout(typeWrite, 80);
+    }
 }
 
-updateClock();
+typeWrite();
 
-setInterval(updateClock, 5000);
+  const sections = document.querySelectorAll('section');
+
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.2
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navbar.classList.add('visible');
+      } else {
+        if (window.scrollY < aboutSection.offsetTop) {
+          navbar.classList.remove('visible');
+        }
+      }
+    });
+  }, options);
+
+  observer.observe(aboutSection);
+
+  const sectionObserver = new IntersectionObserver((entries, observerInstance) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observerInstance.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+  });
+
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
